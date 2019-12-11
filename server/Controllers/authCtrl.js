@@ -1,0 +1,62 @@
+const bcrypt = require('bcryptjs');
+
+module.exports = {
+    login: async(req, res) => {
+        const {username, password} = req.body;
+       
+        const{session} = req;
+        const db = req.app.get('db');
+      
+        let user = await db.check_user(username);
+       
+        user = user[0];
+        if(!user){
+            return res.status(400).send('User not found');
+        }
+        
+        const authenticated = bcrypt.compareSync(password, user.password);
+
+        if(authenticated){
+            delete user.password;
+            session.user = user;
+            res.status(202).send(session.user);
+        } else {
+            res.status(401).send('Incorrect Password')
+        }
+    
+    },
+
+    register: async(req, res) => {
+        const {username, password} = req.body;
+        const db = req.app.get('db');
+        const{session} = req;
+
+        let user = await db.check_user(username);
+        user = user[0];
+        if (user){
+            return res.status(400).send('User is already exists')
+        }
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        let newUser = await db.register_user(username, hash);
+        newUser = newUser[0];
+        // delete newUser.password;
+        session.user = newUser;
+        res.status(201).send(session.user);
+    },
+
+    getUser: (req, res) => {
+        const {user} = req.session;
+        if(user){
+            res.status(200).send(user)
+        }else{
+            res.status(500).send('user not on session')
+        }
+    },
+
+    logout: (req,res) => {
+        req.session.destroy()
+        res.sendStatus(200)
+    }
+ 
+}

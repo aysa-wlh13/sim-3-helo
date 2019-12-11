@@ -1,0 +1,90 @@
+.Auth {
+    height: 100vh;
+    background-image: linear-gradient(to right, #FF70A6, #FF9770, #FFD670, #EAFD71);
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    
+}
+
+.login-register {
+    height: 55vh;
+    width: 35vw;
+    border-radius: 13px; 
+    box-shadow: 2px 5px 20px;
+    box-sizing: border-box;
+    padding: 45px;
+    
+
+}
+
+.logo-name { 
+    height: 24vh;
+    /* border: 2px solid blue; */
+    font-size: 45px;
+    font-weight: 700;
+    color: #FFFFFF;
+    justify-content: flex-start;
+	
+
+}
+
+.inputs {
+    height: 17vh;
+    /* border: 2px solid rgb(9, 97, 9); */
+    color: #FFFFFF;;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+    align-content: stretch;
+    
+}
+
+.username{
+    height: 8vh;
+    width: 20vw;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+    align-content: stretch;
+    font-size: 24px;
+}
+
+.password{
+    height: 8vh;
+    width: 20vw;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+    align-content: stretch;
+    font-size: 24px;
+}
+
+.buttons {
+    height: 6vh;
+    width: 20vw;
+    /* border: 2px solid gray; */
+    margin-left: 100px;
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+}
+
+button {
+    height: 4vh;
+    background-color: #403C39;
+    color:#F2F2F2;
+    border: 0px;
+    font-size: 15px;
+ 
+}
